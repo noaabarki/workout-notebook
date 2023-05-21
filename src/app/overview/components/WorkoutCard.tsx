@@ -24,17 +24,15 @@ export const WorkoutCard = (props: CardProps) => {
         <Divider />
         <CardFooter>
           <CardFooterItem>
-            <span className="footer-item-caption">Kind</span>
-            <div className="footer-item-content">
+            <span>Kind</span>
+            <WorkoutBadges>
               {workoutTypesOfExercises.has("emom") && <WorkoutBadge content="emom" className="badge-emom" />}
               {workoutTypesOfExercises.has("tabata") && <WorkoutBadge content="tabata" className="badge-tabata" />}
-            </div>
+            </WorkoutBadges>
           </CardFooterItem>
           <CardFooterItem>
-            <span className="footer-item-caption">Duration</span>
-            <div className="footer-item-content">
-              <span>{workout.totalTimeInMinutes} mins</span>
-            </div>
+            <span>Duration</span>
+            <WorkoutDuration content={workout.totalTimeInMinutes.toString()} />
           </CardFooterItem>
         </CardFooter>
       </div>
@@ -69,4 +67,22 @@ const WorkoutBadge = styled(Badge)`
     background-color: var(--color-black-1);
     color: var(--color-white-1);
   }
+`;
+
+const WorkoutDuration = styled.span<{ content: string }>`
+  ::before {
+    font-weight: 900;
+    font-size: x-large;
+    content: "${(props) => props.content} ";
+  }
+
+  ::after {
+    font-size: smaller;
+    content: "mins";
+  }
+`;
+
+const WorkoutBadges = styled.div`
+  display: flex;
+  gap: var(--spacing-1);
 `;

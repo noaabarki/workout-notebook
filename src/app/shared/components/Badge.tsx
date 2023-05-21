@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Badge = styled.div<{ content: string }>`
   padding: var(--spacing-1);
   border-radius: 5px;
-  font-size: xx-small;
+  font-size: x-small;
 
   &.badge-info {
     background-color: var(--color-gray-1);

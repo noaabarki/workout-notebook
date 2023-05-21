@@ -7,10 +7,14 @@ export const CardLayout = styled.div`
   padding: var(--spacing-2);
   border-radius: 5px;
   background-color: var(--color-white-1);
-  box-shadow: var(--shadow-1);
   min-width: 300px;
   max-width: 400px;
   height: calc(7 * var(--spacing-6));
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--shadow-1);
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -43,15 +47,7 @@ export const CardFooter = styled.div`
 
 export const CardFooterItem = styled.div`
   display: flex;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
   flex-direction: column;
-
-  .footer-item-caption {
-    font-weight: 600;
-  }
-
-  .footer-item-content {
-    display: flex;
-    gap: var(--spacing-1);
-  }
+  justify-content: space-between;
 `;

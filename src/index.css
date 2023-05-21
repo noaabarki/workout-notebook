@@ -1,12 +1,12 @@
 body {
   margin: 0;
-  font-family:'Montserrat', sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 input, button, textarea, select {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-family);
   font-size: var(--font-size-1);
 
 }
