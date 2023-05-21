@@ -1,0 +1,47 @@
+:root {
+  --color-white-1: #fff;
+
+  --color-primary: #03A9F4;
+  --color-error: #f44336ab;
+
+  --color-blue-1: #1fa3e0; 
+  --color-blue-2: #146C94;
+  --color-blue-3: #1882B4;
+  --color-blue-4: #15729D;
+  --color-blue-5: #126287;
+  --color-blue-6: #0F5270;
+  --color-blue-7:#0C415A;
+  --color-blue-8: #093143;
+  --color-blue-9: #06212D;
+
+  --color-red-1: #f443362b;
+  --color-red-2: #795548;
+  --color-red-3: #f443364d;
+
+  --color-green-1: #4caf504d;
+  --color-green-2: #4caf50;
+  --color-green-3: #4caf502b;
+
+  --color-black-1: #1d252f;
+  --color-black-2: #1A1919;
+  --color-black-3: #000;
+
+  --color-gray-1: #eeeeee;
+  --color-gray-2: #b6becc;
+  --color-gray-3: #9fa8b2;
+  --color-gray-4: #6c757d;
+
+  --font-family: 'Inter', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-size-1: 14px;
+  --font-size-2: 16px;
+  --font-size-3: 18px;
+
+  --spacing-1: 0.5rem;
+  --spacing-2: 0.75rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.5rem;
+  --spacing-5: 1.75rem;
+  --spacing-6: 2rem;
+
+  --shadow-1: 0px 8px 24px rgba(69, 69, 80, 0.1);
+}

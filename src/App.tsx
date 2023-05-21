@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Sidebar } from "./app/shared/components/layout/Sidebar";
+import "./variables.css";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { OverviewPage } from "./app/overview/OverviewPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout className="app">
+      <Sidebar />
+      <Main>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/settings" element={<div>Settings</div>} />
+            <Route path="/" element={<OverviewPage />} />
+          </Routes>
+        </BrowserRouter>
+      </Main>
+    </Layout>
   );
 }
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: auto 3fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "sidebar main";
+`;
+
+const Main = styled.div`
+  grid-area: main;
+`;
 
 export default App;
