@@ -6,14 +6,14 @@ export function useActivities() {
   const [activities, setActivities] = useState<ActivityApi[]>([]);
 
   useEffect(() => {
-    async function fetchApi() {
+    async function fetchActivities() {
       const activities = await getActivities();
 
       setActivities(activities);
       setIsLoading(false);
     }
 
-    fetchApi();
+    fetchActivities();
   }, []);
 
   return { isLoading, activities };
