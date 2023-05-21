@@ -1,46 +1,126 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <img width="1792" alt="image" src="https://user-images.githubusercontent.com/47917189/232225407-db882051-737e-4034-9e92-5f8558b60505.png">
+    <img width="1792" alt="image" src="https://user-images.githubusercontent.com/47917189/232225370-7715e639-6e30-4cee-9e25-b402c7d1e1c0.png">
+      <img width="1792" alt="Screenshot 2023-04-17 at 12 21 50" src="https://user-images.githubusercontent.com/47917189/232443601-50565d11-943f-400a-820e-4a2cbbbf64da.png">
+  <h3 align="center">Cyolo Task</h3>
+</div>
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Project File Structure</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Usage</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-In the project directory, you can run:
+<!-- ABOUT THE PROJECT -->
 
-### `npm start`
+## About The Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project contains all the source code, manifests and other related artifacts(YAMLs, templates, etc) of my submission to Cyolo home assignment.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project contains two applications: Cyolo webapp application, a RESTapi server and a storage service for hosting the files and handling expiration.
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40"/>&nbsp;
+  <img src="https://cdn.worldvectorlogo.com/logos/mobx.svg" title="MOBX" **alt="MOBX" width="40"/>&nbsp;
+ 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" title="Typescript" alt="TS" width="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="40"/>
+ 
+ 
+ 
+ 
+  <img src="https://github.com/devicons/devicon/blob/master/icons/go/go-original.svg" title="Golang" alt="Go" width="40"/>&nbsp;
+ </div>
+ 
+<br/>
 
-### `npm run build`
+- `React.js`,`MobX`, `Styled-Components`.
+- Nodejs
+- Golang
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Project File Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `/api-server`: REST API server that exposes api/images/:uuid and api/images/upload endpoint.
+- `/webapp`: Web Application that displays a central card that can handle file dropping or clicking to upload some file to the server.
+- `/storage`: Golang Service that store the images in FS and peridically deletes expired images.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+<details>
+  <summary>Prerequisites</summary>
+ 
+  * postgresql
+    - Install Postgresql on your local machine -> see installation guidelines [here](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/).
+    - Create images table as following: 
+    ```
+        CREATE TABLE (
+            id SERIAL PRIMARY KEY
+            uuid VARCHAR
+            image_hash VARCHAR
+            filename VARCHAR
+            storage_url VARCHAR
+            expiration_date TIMESTAMP)
+    ```
+    - In `/api-server`, configure the following variables according to the DB you created in .env file: `DB_USER, DB_PASSWORD, DB_NAME`. *The port is configured to 5432 by default.* 
+    
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Web Application
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To run the web application locally, you need to have `Node.js` installed on your machine. Then, navigate to the `webapp` folder and run the following commands:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+    npm install
+    npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Node API Server
 
-## Learn More
+To run the API server locally, you need to have `Node.js` installed on your machine. Then, navigate to the `api-server` folder and run the following commands:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+    npm install
+    npm run build
+    npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To test the project, run `npm test`.
+
+### Node API Server
+
+To run the API server locally, you need to have `Golang` installed on your machine. Then, navigate to the `storage-service` folder and run the following commands:
+
+```
+    go run .
+```
+
+## Contact
+
+Noaa Barki - [@noaabarki](https://twitter.com/noaabarki)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[webapp-screenshot]: images/webapp.png
