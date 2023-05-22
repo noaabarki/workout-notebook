@@ -1,5 +1,5 @@
 export interface AmrapRound {
-  kind: string;
+  name: string;
   reps: number;
   weight: number;
 }

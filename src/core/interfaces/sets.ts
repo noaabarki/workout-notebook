@@ -1,5 +1,5 @@
 export interface SetsRound {
-  kind: string;
+  name: string;
   reps: number;
   weight: number;
 }

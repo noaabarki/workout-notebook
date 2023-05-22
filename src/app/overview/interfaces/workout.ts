@@ -18,7 +18,7 @@ export class Workout {
 
   private buildDescription(exercises: Exercise[]) {
     const exercisesSummary = exercises.map((exercise) => {
-      const exercisesNames = exercise.rounds.map((round) => round.kind).join(" and ");
+      const exercisesNames = exercise.rounds.map((round) => round.name).join(" and ");
 
       switch (exercise.activity.type) {
         case "emom":

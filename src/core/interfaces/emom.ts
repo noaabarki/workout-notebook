@@ -1,6 +1,6 @@
 export type EmomRound = {
   weight: number;
-  kind: string;
+  name: string;
   time?: number;
   reps?: number;
 };

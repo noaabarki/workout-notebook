@@ -1,12 +1,15 @@
+import React from "react";
 import styled from "styled-components";
+import { ActivityApi } from "../../core/api/workouts/client";
 import { Title } from "../shared/components/Title";
+import { WorkoutDetails } from "./components/workout-details/WorkoutDetails";
 import { WorkoutCard } from "./components/WorkoutCard";
 import { useActivities } from "./hooks/useActivities";
 import { Workout } from "./interfaces/workout";
 
 export const OverviewPage = () => {
   const { isLoading, activities } = useActivities();
-
+  const [selectedActivity, setSelectedActivity] = React.useState<ActivityApi | null>(null);
   return (
     <OverviewPageLayout>
       <section>
@@ -23,19 +26,21 @@ export const OverviewPage = () => {
               return (
                 <WorkoutCard
                   key={i}
-                  workout={
-                    new Workout(
-                      activity.name,
-                      activity.totalTime,
-                      activity.exercises
-                    )
-                  }
+                  workout={new Workout(activity.name, activity.totalTime, activity.exercises)}
+                  onClick={() => setSelectedActivity(activity)}
                 />
               );
             }
             return null;
           })}
         </OverviewCardsSection>
+      )}
+      {selectedActivity?.type === "workout" && (
+        <WorkoutDetails
+          isOpen={selectedActivity != null}
+          onClose={() => setSelectedActivity(null)}
+          workout={new Workout(selectedActivity.name, selectedActivity.totalTime, selectedActivity.exercises)}
+        />
       )}
     </OverviewPageLayout>
   );

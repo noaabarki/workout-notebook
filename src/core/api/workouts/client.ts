@@ -21,38 +21,38 @@ export async function getActivities(): Promise<ActivityApi[]> {
       totalTime: 8,
       exercises: [
         {
-          name: "EMOM 1",
+          name: "Emom 1",
           activity: {
             type: "emom",
             time: 4,
           },
           rounds: [
             {
-              kind: "Push ups",
+              name: "Push ups",
               weight: 0,
               reps: 10,
             },
             {
-              kind: "Pull ups",
+              name: "Pull ups",
               weight: 0,
               reps: 10,
             },
           ],
         },
         {
-          name: "EMOM 2",
+          name: "Emom 2",
           activity: {
             type: "emom",
             time: 4,
           },
           rounds: [
             {
-              kind: "Push ups",
+              name: "Push ups",
               weight: 0,
               reps: 10,
             },
             {
-              kind: "Pull ups",
+              name: "Pull ups",
               weight: 0,
               reps: 10,
             },
@@ -66,7 +66,7 @@ export async function getActivities(): Promise<ActivityApi[]> {
           },
           rounds: [
             {
-              kind: "Push ups",
+              name: "Push ups",
               weight: 0,
               reps: 10,
             },

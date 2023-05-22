@@ -1,5 +1,5 @@
 export interface TabataRound {
-  kind: string;
+  name: string;
   reps: number;
   weight: number;
 }

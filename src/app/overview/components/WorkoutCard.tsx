@@ -5,6 +5,7 @@ import { CardBody, CardFooter, CardFooterItem, CardHeader, CardLayout } from "./
 
 interface CardProps {
   workout: Workout;
+  onClick: () => void;
 }
 
 export const WorkoutCard = (props: CardProps) => {
@@ -12,7 +13,7 @@ export const WorkoutCard = (props: CardProps) => {
   const workoutTypesOfExercises = new Set(workout.exercises.map((exercise) => exercise.activity.type));
 
   return (
-    <CardLayout>
+    <CardLayout onClick={props.onClick}>
       <CardHeader>
         <h2>{workout.name}</h2>
         <WorkoutBadge content="workout" className="badge-info" />
