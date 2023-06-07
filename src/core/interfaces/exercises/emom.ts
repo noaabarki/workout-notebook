@@ -9,13 +9,21 @@ export interface EmomExercise {
   rounds: EmomRound[];
 }
 
-interface EmomRound {
+export interface EmomRound {
   name: string;
   weight: number;
   reps?: number;
   time?: number;
 }
 
+export function createNewEmomRound(): EmomRound {
+  return {
+    name: "",
+    weight: 0,
+    reps: 0,
+    time: 0,
+  };
+}
 
 export function isEmomActivity(activity: EmomOptions | unknown): activity is EmomOptions {
   return (activity as EmomOptions).type && (activity as EmomOptions).time !== undefined; 

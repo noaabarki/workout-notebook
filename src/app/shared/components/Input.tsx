@@ -38,7 +38,7 @@ export const NumberInput = (props: InputProps) => {
     <StyledNumberInput
       type="number"
       placeholder={placeholder}
-      value={value || ""}
+      value={value || 0}
       onChange={onChange}
       className={className}
     />

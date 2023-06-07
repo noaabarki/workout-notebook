@@ -7,6 +7,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: none;
   width: fit-content;
+  cursor: pointer;
 `;
 
 export const TextButton = styled(Button)`

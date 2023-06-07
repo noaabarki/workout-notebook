@@ -34,7 +34,7 @@ export const ExerciseAccordion = (props: { exercise: interfaces.Exercise; expand
 
         <AccordionDetails style={accordionDetailsStyle}>
           <ExerciseActivity activity={exercise.activity} onChange={handleOnChangeActivity} />
-          <ExerciseRounds rounds={exercise.rounds} />
+          <ExerciseRounds rounds={exercise.rounds} onChange={(rounds) => {}} />
         </AccordionDetails>
       </Accordion>
     </ExerciseProvider>
