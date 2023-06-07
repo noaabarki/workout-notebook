@@ -4,6 +4,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../../shared/components/Title";
 
 import { ExerciseActivity } from "./ExerciseActivity";
+import { ExerciseProvider } from "../../contexts/exerciseContext";
 import { ExerciseRounds } from "./ExerciseRounds";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
@@ -20,21 +21,23 @@ export const ExerciseAccordion = (props: { exercise: interfaces.Exercise; expand
   };
 
   return (
-    <Accordion expanded={expanded}>
-      <AccordionSummary
-        expandIcon={<MdExpandMore />}
-        id="panel1a-header"
-        style={exerciseAccordionSummaryStyle}
-        onClick={() => setExpanded(!expanded)}
-      >
-        <ExerciseHeader exercise={exercise} />
-      </AccordionSummary>
+    <ExerciseProvider exercise={exercise}>
+      <Accordion expanded={expanded}>
+        <AccordionSummary
+          expandIcon={<MdExpandMore />}
+          id="panel1a-header"
+          style={exerciseAccordionSummaryStyle}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <ExerciseHeader exercise={exercise} />
+        </AccordionSummary>
 
-      <AccordionDetails style={accordionDetailsStyle}>
-        <ExerciseActivity activity={exercise.activity} onChange={handleOnChangeActivity} />
-        <ExerciseRounds rounds={exercise.rounds} />
-      </AccordionDetails>
-    </Accordion>
+        <AccordionDetails style={accordionDetailsStyle}>
+          <ExerciseActivity activity={exercise.activity} onChange={handleOnChangeActivity} />
+          <ExerciseRounds rounds={exercise.rounds} />
+        </AccordionDetails>
+      </Accordion>
+    </ExerciseProvider>
   );
 };
 
@@ -83,4 +86,5 @@ const ExerciseDescription = styled(Subtitle)`
 
 const ExerciseIcon = styled(FiHeart)`
   grid-area: icon;
+  fill: var(--color-gray-2);
 `;

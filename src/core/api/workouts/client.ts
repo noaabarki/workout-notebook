@@ -1,5 +1,4 @@
-import { EmomExercise } from "../../interfaces/emom";
-import { TabataExercise } from "../../interfaces/tabata";
+import { EmomExercise, TabataExercise } from "../../interfaces/exercises";
 
 export type ExerciseApi = EmomExercise | TabataExercise;
 export type WorkoutApi = {

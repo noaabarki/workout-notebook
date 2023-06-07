@@ -1,10 +1,11 @@
-import * as core from "../../../../core/interfaces/emom";
+import * as core from "../../../../core/interfaces/exercises";
 import * as interfaces from "../../interfaces/exercise";
 
 import { Input, NumberInput } from "../../../shared/components/Input";
 
 import { TextButton } from "../../../shared/components/Button";
 import styled from "styled-components";
+import { useExercise } from "../../contexts/exerciseContext";
 
 interface ExerciseRoundsProps {
   rounds: interfaces.ExerciseRounds;
@@ -12,6 +13,7 @@ interface ExerciseRoundsProps {
 
 export const ExerciseRounds = (props: ExerciseRoundsProps) => {
   const { rounds } = props;
+  const exercise = useExercise();
 
   return (
     <ExerciseSection>
@@ -21,12 +23,21 @@ export const ExerciseRounds = (props: ExerciseRoundsProps) => {
         <AddRoundButton />
         {rounds.map((round, i) => (
           <RoundBox className="row" key={i}>
-            {core.isEmomRound(round) && (
+            {exercise.activity.type === "tabata" && core.isTabataRound(round) ? (
               <>
                 <RoundField caption="name" value={round.name} onChange={() => {}} />
-                <RoundField caption="reps" value={round.reps} onChange={() => {}} />
                 <RoundField caption="weight" value={round.weight} onChange={() => {}} />
+                <RoundField caption="reps" value={round.reps || 0} onChange={() => {}} />
               </>
+            ) : exercise.activity.type === "emom" && core.isEmomRound(round) ? (
+              <>
+                <RoundField caption="name" value={round.name} onChange={() => {}} />
+                <RoundField caption="weight" value={round.weight} onChange={() => {}} />
+                <RoundField caption="reps" value={round.reps || 0} onChange={() => {}} />
+                <RoundField caption="time" value={round.time || 0} onChange={() => {}} />
+              </>
+            ) : (
+              <p>Unknown round type</p>
             )}
           </RoundBox>
         ))}

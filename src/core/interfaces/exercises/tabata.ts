@@ -14,3 +14,7 @@ export interface TabataExercise {
   name: string;
   rounds: TabataRound[];
 }
+
+export function isTabataRound(round: TabataRound | unknown): round is TabataRound {
+  return (round as TabataRound).name !== undefined && (round as TabataRound).reps !== undefined && (round as TabataRound).weight !== undefined;
+}

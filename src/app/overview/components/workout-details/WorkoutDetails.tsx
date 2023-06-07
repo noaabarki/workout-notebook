@@ -8,9 +8,7 @@ export const WorkoutDetails = (props: { workout: Workout; isOpen: boolean; onClo
   return (
     <Modal open={isOpen} onClose={onClose}>
       <ModalWrapper>
-        <ModalHeader>
-          <h2>{workout.name}</h2>
-        </ModalHeader>
+        <h2>{workout.name}</h2>
         {workout.exercises.map((exercise, i) => (
           <ExerciseAccordion key={i} exercise={exercise} expanded={i === 0} />
         ))}
@@ -25,8 +23,4 @@ const ModalWrapper = styled.div`
   overflow-y: scroll;
   background-color: var(--color-gray-100);
   padding: var(--spacing-3);
-`;
-
-const ModalHeader = styled.div`
-  padding: var(--spacing-3) 0;
 `;

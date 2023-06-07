@@ -3,7 +3,7 @@ import * as interfaces from "../../interfaces/exercise";
 import { CancelButton, SaveButton } from "../../../shared/components/Button";
 
 import { NumberInput } from "../../../shared/components/Input";
-import { isEmomActivity } from "../../../../core/interfaces/emom";
+import { isEmomActivity } from "../../../../core/interfaces/exercises";
 import styled from "styled-components";
 import { useState } from "react";
 
