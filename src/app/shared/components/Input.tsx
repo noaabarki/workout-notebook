@@ -1,15 +1,14 @@
-import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 
 interface InputProps {
   onChange: (event: any) => void;
   type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   className?: string;
 }
 
-export const Input = observer(function Input(props: InputProps) {
+export const Input = (props: InputProps) => {
   const { type, placeholder, value, onChange, className } = props;
   return (
     <StyledInput
@@ -20,7 +19,7 @@ export const Input = observer(function Input(props: InputProps) {
       className={className}
     />
   );
-});
+};
 
 export const StyledInput = styled.input`
   padding: var(--spacing-1);
@@ -31,4 +30,21 @@ export const StyledInput = styled.input`
     outline: none;
     box-shadow: 0 0 2pt 1pt var(--color-blue-2);
   }
+`;
+
+export const NumberInput = (props: InputProps) => {
+  const { type, placeholder, value, onChange, className } = props;
+  return (
+    <StyledNumberInput
+      type={type || "text"}
+      placeholder={placeholder}
+      value={value || ""}
+      onChange={onChange}
+      className={className}
+    />
+  );
+};
+
+export const StyledNumberInput = styled(StyledInput)`
+  width: var(--spacing-6);
 `;

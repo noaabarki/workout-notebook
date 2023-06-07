@@ -15,7 +15,7 @@ export function Modal(props: React.PropsWithChildren<ModalProps>) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} maxWidth={"lg"}>
       {props.children}
     </Dialog>
   );

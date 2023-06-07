@@ -1,7 +1,4 @@
-import { EmomExercise } from "../../../core/interfaces/emom";
-import { TabataExercise } from "../../../core/interfaces/tabata";
-
-export type Exercise = EmomExercise | TabataExercise;
+import { Exercise } from "./exercise";
 
 export class Workout {
   name: string;

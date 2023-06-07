@@ -4,12 +4,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--font-size-1);
+  font-weight: 300;
 }
 
 input, button, textarea, select {
   font-family: var(--font-family);
   font-size: var(--font-size-1);
-
+  font-weight: 300;
 }
 
 code {
@@ -29,4 +30,17 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-1)
+}
+
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1)
 }

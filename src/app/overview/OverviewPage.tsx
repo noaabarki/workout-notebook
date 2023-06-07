@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
 import { ActivityApi } from "../../core/api/workouts/client";
+import React from "react";
 import { Title } from "../shared/components/Title";
-import { WorkoutDetails } from "./components/workout-details/WorkoutDetails";
-import { WorkoutCard } from "./components/WorkoutCard";
-import { useActivities } from "./hooks/useActivities";
 import { Workout } from "./interfaces/workout";
+import { WorkoutCard } from "./components/WorkoutCard";
+import { WorkoutDetails } from "./components/workout-details/WorkoutDetails";
+import styled from "styled-components";
+import { useActivities } from "./hooks/useActivities";
 
 export const OverviewPage = () => {
   const { isLoading, activities } = useActivities();
