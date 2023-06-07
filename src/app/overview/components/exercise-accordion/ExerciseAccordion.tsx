@@ -1,7 +1,8 @@
+import * as interfaces from "../../interfaces/exercise";
+
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../../shared/components/Title";
 
-import { Exercise } from "../../interfaces/exercise";
 import { ExerciseActivity } from "./ExerciseActivity";
 import { ExerciseRounds } from "./ExerciseRounds";
 import { FiHeart } from "react-icons/fi";
@@ -9,9 +10,14 @@ import { MdExpandMore } from "react-icons/md";
 import styled from "styled-components";
 import { useState } from "react";
 
-export const ExerciseAccordion = (props: { exercise: Exercise; expanded: boolean }) => {
+export const ExerciseAccordion = (props: { exercise: interfaces.Exercise; expanded: boolean }) => {
   const [expanded, setExpanded] = useState<boolean>(props.expanded);
   const { exercise } = props;
+
+  const handleOnChangeActivity = (activity: interfaces.ExerciseActivity) => {
+    const newExercise = { ...exercise, activity };
+    console.log(newExercise);
+  };
 
   return (
     <Accordion expanded={expanded}>
@@ -25,7 +31,7 @@ export const ExerciseAccordion = (props: { exercise: Exercise; expanded: boolean
       </AccordionSummary>
 
       <AccordionDetails style={accordionDetailsStyle}>
-        <ExerciseActivity activity={exercise.activity} />
+        <ExerciseActivity activity={exercise.activity} onChange={handleOnChangeActivity} />
         <ExerciseRounds rounds={exercise.rounds} />
       </AccordionDetails>
     </Accordion>
@@ -43,7 +49,7 @@ const accordionDetailsStyle = {
   boxShadow: "none",
 };
 
-const ExerciseHeader = (props: { exercise: Exercise }) => {
+const ExerciseHeader = (props: { exercise: interfaces.Exercise }) => {
   const { exercise } = props;
   return (
     <ExerciseHeaderLayout>

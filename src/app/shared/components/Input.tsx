@@ -33,10 +33,10 @@ export const StyledInput = styled.input`
 `;
 
 export const NumberInput = (props: InputProps) => {
-  const { type, placeholder, value, onChange, className } = props;
+  const { placeholder, value, onChange, className } = props;
   return (
     <StyledNumberInput
-      type={type || "text"}
+      type="number"
       placeholder={placeholder}
       value={value || ""}
       onChange={onChange}

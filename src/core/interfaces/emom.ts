@@ -17,6 +17,10 @@ export interface EmomExercise {
 }
 
 
+export function isEmomActivity(activity: EmomOptions | unknown): activity is EmomOptions {
+  return (activity as EmomOptions).type !== undefined && (activity as EmomOptions).time !== undefined; 
+}
+
 export function isEmomRound(round: EmomRound | unknown): round is EmomRound {
   return (round as EmomRound).name !== undefined && (round as EmomRound).weight !== undefined && (round as EmomRound).reps !== undefined;
 }

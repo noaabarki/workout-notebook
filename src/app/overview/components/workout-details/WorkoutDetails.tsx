@@ -1,6 +1,5 @@
-import { ExerciseAccordion } from "../exercise-details/ExerciseAccordion";
+import { ExerciseAccordion } from "../exercise-accordion/ExerciseAccordion";
 import { Modal } from "../../../shared/components/Modal";
-import React from "react";
 import { Workout } from "../../interfaces/workout";
 import styled from "styled-components";
 
