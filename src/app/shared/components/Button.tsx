@@ -18,15 +18,27 @@ export const TextButton = styled(Button)`
 export const SaveButton = styled(Button)`
   background-color: var(--color-blue-1);
   color: var(--color-white-1);
+  border: solid 1px var(--color-blue-1);
   ::after {
     content: "Save";
+  }
+
+  :hover {
+    background-color: var(--color-blue-2);
+    border: solid 1px var(--color-blue-2);
   }
 `;
 
 export const CancelButton = styled(Button)`
-  background-color: var(--color-gray-2);
-  color: var(--color-white-1);
+  background-color: transparent;
+  border: solid 1px var(--color-blue-1);
+  color: var(--color-blue-1);
   ::after {
     content: "Cancel";
+  }
+
+  :hover {
+    border: solid 1px var(--color-blue-2);
+    color: var(--color-blue-2);
   }
 `;

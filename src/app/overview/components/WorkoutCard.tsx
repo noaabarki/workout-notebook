@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import { CardBody, CardFooter, CardFooterItem, CardHeader, CardLayout } from "./Card";
+
 import { Badge } from "../../shared/components/Badge";
 import { Workout } from "../interfaces/workout";
-import { CardBody, CardFooter, CardFooterItem, CardHeader, CardLayout } from "./Card";
+import styled from "styled-components";
 
 interface CardProps {
   workout: Workout;
@@ -10,7 +11,7 @@ interface CardProps {
 
 export const WorkoutCard = (props: CardProps) => {
   const { workout } = props;
-  const workoutTypesOfExercises = new Set(workout.exercises.map((exercise) => exercise.activity.type));
+  const workoutTypesOfExercises = new Set(workout.exercises.map((exercise) => exercise.activityType));
 
   return (
     <CardLayout onClick={props.onClick}>

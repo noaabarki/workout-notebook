@@ -11,14 +11,23 @@ import { MdExpandMore } from "react-icons/md";
 import styled from "styled-components";
 import { useState } from "react";
 
-export const ExerciseAccordion = (props: { exercise: interfaces.Exercise; expanded: boolean }) => {
+interface ExerciseAccordionProps {
+  exercise: interfaces.Exercise;
+  expanded: boolean;
+  onChange: (exercise: interfaces.Exercise) => void;
+}
+
+export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
   const [expanded, setExpanded] = useState<boolean>(props.expanded);
   const { exercise } = props;
 
-  const handleOnChangeActivity = (activity: interfaces.ExerciseActivity) => {
-    const newExercise = { ...exercise, activity };
-    console.log(newExercise);
+  const handleOnChangeExerciseType = (type: interfaces.ExerciseActivityType) => {
+    if (exercise.activityType !== type) {
+      // reset rounds
+    }
   };
+
+  const handleOnChangeExerciseOptions = (opts: interfaces.ExerciseActivityOptions) => {};
 
   return (
     <ExerciseProvider exercise={exercise}>
@@ -33,8 +42,13 @@ export const ExerciseAccordion = (props: { exercise: interfaces.Exercise; expand
         </AccordionSummary>
 
         <AccordionDetails style={accordionDetailsStyle}>
-          <ExerciseActivity activity={exercise.activity} onChange={handleOnChangeActivity} />
-          <ExerciseRounds rounds={exercise.rounds} onChange={(rounds) => {}} />
+          <ExerciseActivity
+            activityType={exercise.activityType}
+            activityOptions={exercise.activityOptions}
+            onChangeActivityOptions={handleOnChangeExerciseOptions}
+            onChangeActivityType={handleOnChangeExerciseType}
+          />
+          <ExerciseRounds rounds={exercise.rounds} onChange={() => {}} />
         </AccordionDetails>
       </Accordion>
     </ExerciseProvider>

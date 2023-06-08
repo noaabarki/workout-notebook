@@ -3,37 +3,51 @@ import * as interfaces from "../../interfaces/exercise";
 import { CancelButton, SaveButton } from "../../../shared/components/Button";
 
 import { NumberInput } from "../../../shared/components/Input";
-import { isEmomActivity } from "../../../../core/interfaces/exercises";
 import styled from "styled-components";
 import { useState } from "react";
 
 const EXERCISE_ACTIVITY_TYPES: interfaces.ExerciseActivityType[] = ["emom", "tabata"];
 
 interface ExerciseActivityProps {
-  activity: interfaces.ExerciseActivity;
-  onChange: (activity: interfaces.ExerciseActivity) => void;
+  activityType: interfaces.ExerciseActivityType;
+  activityOptions: interfaces.ExerciseActivityOptions;
+  onChangeActivityType: (type: interfaces.ExerciseActivityType) => void;
+  onChangeActivityOptions: (opts: interfaces.ExerciseActivityOptions) => void;
 }
 
 export const ExerciseActivity = (props: ExerciseActivityProps) => {
-  const [changed, setChanged] = useState<boolean>(false);
-  const [selected, setSelected] = useState<interfaces.ExerciseActivityType>(props.activity.type);
-  const [activity, setActivity] = useState<interfaces.ExerciseActivity>(props.activity);
+  const selectedActivityType = props.activityType;
+  const selectedActivityOptions = props.activityOptions;
+  // const [changed, setChanged] = useState<boolean>(false);
+  // const [selectedActivityType, setSelectedActivityType] = useState<interfaces.ExerciseActivityType>(props.activityType);
+  // const [selectedActivityOptions, setSelectedActivityOptions] = useState<interfaces.ExerciseActivityOptions>(
+  // props.activityOptions
+  // );
 
-  const handleChangeActivityType = (type: interfaces.ExerciseActivityType) => {
-    setSelected(type);
-    setChanged(true);
+  const handleOnChangeActivityType = (type: interfaces.ExerciseActivityType) => {
+    // if (selectedActivityType !== type) {
+    // reset
+    // setSelectedActivityOptions(interfaces.newExerciseActivityOptions(type));
+    // }
+
+    // setSelectedActivityType(type);
+    props.onChangeActivityType(type);
+    // setChanged(true);
   };
 
-  const handleChangeActivityOptions = (activity: interfaces.ExerciseActivity) => {
-    setActivity(activity);
-    setChanged(true);
+  const handleOnChangeActivityOptions = (opts: interfaces.ExerciseActivityOptions) => {
+    // setSelectedActivityOptions(opts);
+    props.onChangeActivityOptions(opts);
+    // setChanged(true);
   };
 
-  const handleCancel = () => {
-    setSelected(props.activity.type);
-    setActivity(props.activity);
-    setChanged(false);
-  };
+  // const handleOnClickCancel = () => {
+  //   setSelectedActivityType(props.activityType);
+  //   setSelectedActivityOptions(props.activityOptions);
+  //   // setChanged(false);
+  // };
+
+  // const handleOnClickSave = () => {};
 
   return (
     <ExerciseSection>
@@ -42,42 +56,54 @@ export const ExerciseActivity = (props: ExerciseActivityProps) => {
         <SectionDescription>Choose the Kind of the exercise</SectionDescription>
       </div>
       <Box className="col">
-        <div className="row">
-          <SectionTitle>Type</SectionTitle>
-          {EXERCISE_ACTIVITY_TYPES.map((type, i) => {
-            return (
-              <ActivityRadio key={i}>
-                <label htmlFor={type}>{type}</label>
-                <input
-                  type="radio"
-                  value={type}
-                  checked={type.toLowerCase() === selected.toLowerCase()}
-                  onChange={() => handleChangeActivityType(type)}
-                />
-              </ActivityRadio>
-            );
-          })}
-        </div>
-
-        {selected === "emom" && (
+        <ActivityTypes selected={selectedActivityType} onChange={handleOnChangeActivityType} />
+        {selectedActivityType === "emom" && interfaces.isEmomActivityOptions(selectedActivityOptions) && (
           <div className="row">
             <SectionTitle>Time</SectionTitle>
             <NumberInput
-              value={isEmomActivity(activity) ? activity.time : ""}
-              onChange={(e) =>
-                handleChangeActivityOptions({ ...activity, time: e.target.value } as interfaces.ExerciseActivity)
-              }
+              value={selectedActivityOptions.time}
+              onChange={(e) => handleOnChangeActivityOptions({ ...selectedActivityOptions, time: e.target.value })}
             />
           </div>
         )}
-        {changed && (
+        {/* {changed && (
           <SaveOrDicardActivityChanges className="row">
-            <CancelButton onClick={handleCancel} />
-            <SaveButton onClick={() => props.onChange(activity)} />
+            <CancelButton onClick={handleOnClickCancel} />
+            <SaveButton onClick={handleOnClickSave} />
           </SaveOrDicardActivityChanges>
-        )}
+        )} */}
       </Box>
     </ExerciseSection>
+  );
+};
+
+interface ActivityTypeProps {
+  selected: interfaces.ExerciseActivityType;
+  onChange: (type: interfaces.ExerciseActivityType) => void;
+}
+
+export const ActivityTypes = (props: ActivityTypeProps) => {
+  const handleOnChangeActivityType = (type: interfaces.ExerciseActivityType) => {
+    props.onChange(type);
+  };
+
+  return (
+    <div className="row">
+      <SectionTitle>Type</SectionTitle>
+      {EXERCISE_ACTIVITY_TYPES.map((type, i) => {
+        return (
+          <ActivityRadio key={i}>
+            <label htmlFor={type}>{type}</label>
+            <input
+              type="radio"
+              value={type}
+              checked={type.toLowerCase() === props.selected.toLowerCase()}
+              onChange={() => handleOnChangeActivityType(type)}
+            />
+          </ActivityRadio>
+        );
+      })}
+    </div>
   );
 };
 

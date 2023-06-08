@@ -1,4 +1,4 @@
-import * as core from "../../../../core/interfaces/exercises";
+import * as core from "../../../../core/interfaces";
 import * as interfaces from "../../interfaces/exercise";
 
 import { CancelButton, SaveButton, TextButton } from "../../../shared/components/Button";
@@ -20,9 +20,9 @@ export const ExerciseRounds = (props: ExerciseRoundsProps) => {
 
   const handleOnClickAddRound = () => {
     let newRound: core.TabataRound | core.EmomRound;
-    if (exercise.activity.type === "tabata") {
+    if (exercise.activityType === "tabata") {
       newRound = core.createNewTabataRound();
-    } else if (exercise.activity.type === "emom") {
+    } else if (exercise.activityType === "emom") {
       newRound = core.createNewEmomRound();
     } else {
       throw new Error("Unknown exercise activity type");
@@ -57,9 +57,9 @@ export const ExerciseRounds = (props: ExerciseRoundsProps) => {
         <AddRoundButton onClick={handleOnClickAddRound} />
         {rounds.map((round, i) => (
           <RoundBox className="row" key={i}>
-            {exercise.activity.type === "tabata" && core.isTabataRound(round) ? (
+            {exercise.activityType === "tabata" && core.isTabataRound(round) ? (
               <TabataRound round={round} onChange={(round) => handleChangeRound(round, i)} />
-            ) : exercise.activity.type === "emom" && core.isEmomRound(round) ? (
+            ) : exercise.activityType === "emom" && core.isEmomRound(round) ? (
               <EmomRound round={round} onChange={(round) => handleChangeRound(round, i)} />
             ) : (
               <p>Unknown round type</p>
@@ -161,6 +161,10 @@ export const RoundBox = styled.div`
   margin-top: var(--spacing-2);
 `;
 
+const SaveOrDicardActivityChanges = styled.div`
+  margin-left: auto;
+`;
+
 /* Section stuff */
 const ExerciseSection = styled.section`
   display: flex;
@@ -182,8 +186,4 @@ const Box = styled.div`
   background-color: var(--color-white-1);
   padding: var(--spacing-3) var(--spacing-1);
   border-radius: 5px;
-`;
-
-const SaveOrDicardActivityChanges = styled.div`
-  margin-left: auto;
 `;

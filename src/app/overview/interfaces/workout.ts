@@ -17,11 +17,11 @@ export class Workout {
     const exercisesSummary = exercises.map((exercise) => {
       const exercisesNames = exercise.rounds.map((round) => round.name).join(" and ");
 
-      switch (exercise.activity.type) {
+      switch (exercise.activityType) {
         case "emom":
-          return `${exercise.activity.time}${exercise.activity.type} * ${exercise.rounds.length} of ${exercisesNames}`;
+          return `${exercise.activityOptions.time}emom * ${exercise.rounds.length} of ${exercisesNames}`;
         case "tabata":
-          return `${exercise.activity.count} ${exercise.activity.type}`;
+          return `${exercise.activityOptions.count} tabata`;
         default:
           return "";
       }

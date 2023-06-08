@@ -3,13 +3,14 @@ import React from "react";
 import { Title } from "../shared/components/Title";
 import { Workout } from "./interfaces/workout";
 import { WorkoutCard } from "./components/WorkoutCard";
-import { WorkoutDetails } from "./components/workout-details/WorkoutDetails";
+import { WorkoutDetailsModal } from "./components/workout-details/WorkoutDetails";
 import styled from "styled-components";
 import { useActivities } from "./hooks/useActivities";
 
 export const OverviewPage = () => {
   const { isLoading, activities } = useActivities();
   const [selectedActivity, setSelectedActivity] = React.useState<ActivityApi | null>(null);
+
   return (
     <OverviewPageLayout>
       <section>
@@ -36,10 +37,13 @@ export const OverviewPage = () => {
         </OverviewCardsSection>
       )}
       {selectedActivity?.type === "workout" && (
-        <WorkoutDetails
+        <WorkoutDetailsModal
           isOpen={selectedActivity != null}
           onClose={() => setSelectedActivity(null)}
           workout={new Workout(selectedActivity.name, selectedActivity.totalTime, selectedActivity.exercises)}
+          onChange={(workout) => {
+            setSelectedActivity({ ...selectedActivity, ...workout });
+          }}
         />
       )}
     </OverviewPageLayout>
