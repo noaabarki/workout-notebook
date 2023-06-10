@@ -3,11 +3,11 @@ import * as interfaces from "../../interfaces/exercise";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../../shared/components/Title";
 
-import { ExerciseActivity } from "./ExerciseActivity";
+import { EmomExercise } from "./EmomExercise";
 import { ExerciseProvider } from "../../contexts/exerciseContext";
-import { ExerciseRounds } from "./ExerciseRounds";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
+import { TabataExercise } from "./TabataExercise";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -18,16 +18,18 @@ interface ExerciseAccordionProps {
 }
 
 export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
-  const [expanded, setExpanded] = useState<boolean>(props.expanded);
   const { exercise } = props;
+  const [expanded, setExpanded] = useState<boolean>(props.expanded);
+  const [selectedType, setSelectedType] = useState(exercise.activityType);
 
   const handleOnChangeExerciseType = (type: interfaces.ExerciseActivityType) => {
-    if (exercise.activityType !== type) {
+    if (selectedType !== type) {
       // reset rounds
     }
+    setSelectedType(type);
   };
 
-  const handleOnChangeExerciseOptions = (opts: interfaces.ExerciseActivityOptions) => {};
+  // const handleOnChangeExerciseOptions = (opts: interfaces.ExerciseActivityOptions) => {};
 
   return (
     <ExerciseProvider exercise={exercise}>
@@ -42,13 +44,12 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
         </AccordionSummary>
 
         <AccordionDetails style={accordionDetailsStyle}>
-          <ExerciseActivity
-            activityType={exercise.activityType}
-            activityOptions={exercise.activityOptions}
-            onChangeActivityOptions={handleOnChangeExerciseOptions}
-            onChangeActivityType={handleOnChangeExerciseType}
-          />
-          <ExerciseRounds rounds={exercise.rounds} onChange={() => {}} />
+          {selectedType === "emom" && interfaces.isEmomExercise(exercise) && (
+            <EmomExercise exercise={exercise} onChangeType={handleOnChangeExerciseType} />
+          )}
+          {selectedType === "tabata" && interfaces.isTabataExercise(exercise) && (
+            <TabataExercise exercise={exercise} onChangeType={handleOnChangeExerciseType} />
+          )}
         </AccordionDetails>
       </Accordion>
     </ExerciseProvider>

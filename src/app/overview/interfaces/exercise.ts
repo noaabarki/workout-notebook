@@ -16,11 +16,6 @@ export function isEmomActivityOptions(exercise: ExerciseActivityOptions | unknow
   return (exercise as ExerciseActivityOptions) && (exercise as EmomActivityOptions).time !== undefined;
 }
 
-export function newExerciseActivityOptions(type: ExerciseActivityType): ExerciseActivityOptions {
-  switch (type) {
-    case "emom":
-      return { time: 0 };
-    case "tabata":
-      return { count: 0 };
-  }
+export function isTabataExercise(exercise: Exercise | unknown): exercise is TabataExercise {
+  return (exercise as Exercise).activityType === "tabata";
 }
