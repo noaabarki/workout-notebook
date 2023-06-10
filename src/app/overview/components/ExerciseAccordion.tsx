@@ -1,13 +1,13 @@
-import * as interfaces from "../../interfaces/exercise";
+import * as interfaces from "../interfaces/exercise";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { Subtitle, Title } from "../../../shared/components/Title";
+import { Subtitle, Title } from "../../shared/components/Title";
 
-import { EmomExercise } from "./EmomExercise";
-import { ExerciseProvider } from "../../contexts/exerciseContext";
+import { EmomExercise } from "./exercise-accordion/EmomExercise";
+import { ExerciseProvider } from "../contexts/exerciseContext";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
-import { TabataExercise } from "./TabataExercise";
+import { TabataExercise } from "./exercise-accordion/TabataExercise";
 import styled from "styled-components";
 import { useState } from "react";
 

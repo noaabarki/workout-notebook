@@ -1,9 +1,9 @@
-import { CancelButton, SaveButton } from "../../../shared/components/Button";
+import { CancelButton, SaveButton } from "../../shared/components/Button";
 
-import { Exercise } from "../../interfaces/exercise";
-import { ExerciseAccordion } from "../exercise-accordion/ExerciseAccordion";
-import { Modal } from "../../../shared/components/Modal";
-import { Workout } from "../../interfaces/workout";
+import { Exercise } from "../interfaces/exercise";
+import { ExerciseAccordion } from "./ExerciseAccordion";
+import { Modal } from "../../shared/components/Modal";
+import { Workout } from "../interfaces/workout";
 import styled from "styled-components";
 import { useState } from "react";
 

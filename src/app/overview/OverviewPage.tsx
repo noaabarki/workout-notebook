@@ -3,7 +3,7 @@ import React from "react";
 import { Title } from "../shared/components/Title";
 import { Workout } from "./interfaces/workout";
 import { WorkoutCard } from "./components/WorkoutCard";
-import { WorkoutDetailsModal } from "./components/workout-details/WorkoutDetails";
+import { WorkoutDetailsModal } from "./components/WorkoutDetails";
 import styled from "styled-components";
 import { useActivities } from "./hooks/useActivities";
 
