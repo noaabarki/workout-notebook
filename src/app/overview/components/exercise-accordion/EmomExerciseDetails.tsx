@@ -2,7 +2,6 @@ import * as core from "../../../../core/interfaces";
 
 import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
 
-import { ExerciseActivitiesRadio } from "./ExerciseActivitiesRadio";
 import ExerciseDetails from "./ExerciseDetails";
 import { NumberInput } from "../../../shared/components/Input";
 
@@ -17,7 +16,6 @@ export const EmomExerciseDetails = (props: EmomExerciseDetailsProps) => {
       <ExerciseDetails>
         <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
         <ExerciseDetails.Body>
-          <ExerciseActivitiesRadio selected="emom" onChange={() => {}} />
           <div className="row">
             <ExerciseDetails.Caption title="Time" />
             <NumberInput

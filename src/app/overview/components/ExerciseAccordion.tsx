@@ -3,6 +3,7 @@ import * as interfaces from "../interfaces/exercise";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../shared/components/Title";
+import { newEmomExercise, newTabataExercise } from "../utils/exercise";
 
 import { EmomExerciseDetails } from "./exercise-accordion/EmomExerciseDetails";
 import { ExerciseActivitiesRadio } from "./exercise-accordion/ExerciseActivitiesRadio";
@@ -25,12 +26,25 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
 
   const handleOnChangeExerciseType = (type: interfaces.ExerciseActivityType) => {
     if (exercise.activityType !== type) {
-      // reset exercise
+      switch (type) {
+        case "tabata":
+          setExercise(newTabataExercise());
+          return;
+        case "emom":
+          setExercise(newEmomExercise());
+          return;
+      }
     }
   };
 
   const handleOnChangeEmomExerciseOptions = (opts: core.EmomActivityOptions) => {
     if (interfaces.isEmomExercise(exercise)) {
+      setExercise({ ...exercise, activityOptions: opts });
+    }
+  };
+
+  const handleOnChangeTabataExerciseOptions = (opts: core.TabataActivityOptions) => {
+    if (interfaces.isTabataExercise(exercise)) {
       setExercise({ ...exercise, activityOptions: opts });
     }
   };
@@ -52,7 +66,7 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
             <EmomExerciseDetails exercise={exercise} onChangeOptions={handleOnChangeEmomExerciseOptions} />
           )}
           {exercise.activityType === "tabata" && interfaces.isTabataExercise(exercise) && (
-            <TabataExerciseDetails exercise={exercise} />
+            <TabataExerciseDetails exercise={exercise} onChangeOptions={handleOnChangeTabataExerciseOptions} />
           )}
         </AccordionDetails>
       </Accordion>

@@ -3,9 +3,11 @@ import * as core from "../../../../core/interfaces";
 import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
 
 import ExerciseDetails from "./ExerciseDetails";
+import { NumberInput } from "../../../shared/components/Input";
 
 interface TabataExerciseProps {
   exercise: core.TabataExercise;
+  onChangeOptions: (type: core.TabataActivityOptions) => void;
 }
 
 export const TabataExerciseDetails = (props: TabataExerciseProps) => {
@@ -13,6 +15,13 @@ export const TabataExerciseDetails = (props: TabataExerciseProps) => {
     <>
       <ExerciseDetails>
         <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
+        <ExerciseDetails.Body>
+          <ExerciseDetails.Caption title="Time" />
+          <NumberInput
+            value={props.exercise.activityOptions.count}
+            onChange={(e) => props.onChangeOptions({ ...props.exercise.activityOptions, count: e.target.value })}
+          />
+        </ExerciseDetails.Body>
       </ExerciseDetails>
       <ExerciseDetails>
         <ExerciseDetails.Header title="Rounds" description="Describe the rounds of your exercise" />
