@@ -8,6 +8,7 @@ import { NumberInput } from "../../../shared/components/Input";
 interface TabataExerciseProps {
   exercise: core.TabataExercise;
   onChangeOptions: (type: core.TabataActivityOptions) => void;
+  onAddRound: () => void;
 }
 
 export const TabataExerciseDetails = (props: TabataExerciseProps) => {
@@ -26,7 +27,7 @@ export const TabataExerciseDetails = (props: TabataExerciseProps) => {
       <ExerciseDetails>
         <ExerciseDetails.Header title="Rounds" description="Describe the rounds of your exercise" />
         <ExerciseDetails.Body>
-          <AddRoundButton onClick={() => {}} />
+          <AddRoundButton onClick={props.onAddRound} />
           {props.exercise.rounds.map((round, i) => (
             <RoundBox className="row" key={i}>
               <TabataRound round={round} onChange={(round) => {}} />

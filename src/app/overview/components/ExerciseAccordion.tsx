@@ -3,7 +3,7 @@ import * as interfaces from "../interfaces/exercise";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../shared/components/Title";
-import { newEmomExercise, newTabataExercise } from "../utils/exercise";
+import { addRound, newEmomExercise, newTabataExercise } from "../utils/exercise";
 
 import { EmomExerciseDetails } from "./exercise-accordion/EmomExerciseDetails";
 import { ExerciseActivitiesRadio } from "./exercise-accordion/ExerciseActivitiesRadio";
@@ -49,12 +49,17 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
     }
   };
 
+  const handleAddRound = () => {
+    const newExercise = addRound(exercise);
+    setExercise(newExercise);
+  };
+
   return (
     <ExerciseProvider exercise={exercise}>
       <Accordion expanded={expanded}>
         <AccordionSummary
           expandIcon={<MdExpandMore />}
-          id="panel1a-header"
+          id="panel-header"
           style={exerciseAccordionSummaryStyle}
           onClick={() => setExpanded(!expanded)}
         >
@@ -63,10 +68,18 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
         <AccordionDetails style={accordionDetailsStyle}>
           <ExerciseActivitiesRadio selected={exercise.activityType} onChange={handleOnChangeExerciseType} />
           {exercise.activityType === "emom" && interfaces.isEmomExercise(exercise) && (
-            <EmomExerciseDetails exercise={exercise} onChangeOptions={handleOnChangeEmomExerciseOptions} />
+            <EmomExerciseDetails
+              exercise={exercise}
+              onChangeOptions={handleOnChangeEmomExerciseOptions}
+              onAddRound={handleAddRound}
+            />
           )}
           {exercise.activityType === "tabata" && interfaces.isTabataExercise(exercise) && (
-            <TabataExerciseDetails exercise={exercise} onChangeOptions={handleOnChangeTabataExerciseOptions} />
+            <TabataExerciseDetails
+              exercise={exercise}
+              onChangeOptions={handleOnChangeTabataExerciseOptions}
+              onAddRound={handleAddRound}
+            />
           )}
         </AccordionDetails>
       </Accordion>

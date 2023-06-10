@@ -8,6 +8,7 @@ import { NumberInput } from "../../../shared/components/Input";
 interface EmomExerciseDetailsProps {
   exercise: core.EmomExercise;
   onChangeOptions: (type: core.EmomActivityOptions) => void;
+  onAddRound: () => void;
 }
 
 export const EmomExerciseDetails = (props: EmomExerciseDetailsProps) => {
@@ -28,7 +29,7 @@ export const EmomExerciseDetails = (props: EmomExerciseDetailsProps) => {
       <ExerciseDetails>
         <ExerciseDetails.Header title="Rounds" description="Describe the rounds of your exercise" />
         <ExerciseDetails.Body>
-          <AddRoundButton onClick={() => {}} />
+          <AddRoundButton onClick={props.onAddRound} />
           {props.exercise.rounds.map((round, i) => (
             <RoundBox className="row" key={i}>
               <EmomRound round={round} onChange={(round) => {}} />
