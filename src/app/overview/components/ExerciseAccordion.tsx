@@ -40,9 +40,8 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
           style={exerciseAccordionSummaryStyle}
           onClick={() => setExpanded(!expanded)}
         >
-          <ExerciseHeader exercise={exercise} />
+          <ExerciseAccordionHeader exercise={exercise} />
         </AccordionSummary>
-
         <AccordionDetails style={accordionDetailsStyle}>
           {selectedType === "emom" && interfaces.isEmomExercise(exercise) && (
             <EmomExerciseDetails exercise={exercise} onChangeType={handleOnChangeExerciseType} />
@@ -67,20 +66,20 @@ const accordionDetailsStyle = {
   boxShadow: "none",
 };
 
-const ExerciseHeader = (props: { exercise: interfaces.Exercise }) => {
+const ExerciseAccordionHeader = (props: { exercise: interfaces.Exercise }) => {
   const { exercise } = props;
   return (
-    <ExerciseHeaderLayout>
+    <ExerciseAccordionHeaderLayout>
       <div className="centered">
         <ExerciseIcon />
       </div>
       <ExerciseName>{exercise.name}</ExerciseName>
       <ExerciseDescription>Create an exercise and add it to your workout</ExerciseDescription>
-    </ExerciseHeaderLayout>
+    </ExerciseAccordionHeaderLayout>
   );
 };
 
-const ExerciseHeaderLayout = styled.div`
+const ExerciseAccordionHeaderLayout = styled.div`
   display: grid;
   grid-template-areas: "icon name" "icon description";
   gap: var(--spacing-1);
