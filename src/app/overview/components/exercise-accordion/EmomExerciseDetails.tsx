@@ -3,7 +3,6 @@ import * as interfaces from "../../interfaces/exercise";
 
 import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
 
-import { Box } from "@mui/material";
 import { ExerciseActivitiesRadio } from "./ExerciseActivitiesRadio";
 import ExerciseDetails from "./ExerciseDetails";
 import { NumberInput } from "../../../shared/components/Input";
@@ -13,7 +12,7 @@ interface EmomExerciseProps {
   onChangeType: (type: interfaces.ExerciseActivityType) => void;
 }
 
-export const EmomExercise = (props: EmomExerciseProps) => {
+export const EmomExerciseDetails = (props: EmomExerciseProps) => {
   return (
     <>
       <ExerciseDetails>

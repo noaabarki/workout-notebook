@@ -12,7 +12,7 @@ interface TabataExerciseProps {
   onChangeType: (type: interfaces.ExerciseActivityType) => void;
 }
 
-export const TabataExercise = (props: TabataExerciseProps) => {
+export const TabataExerciseDetails = (props: TabataExerciseProps) => {
   return (
     <>
       <ExerciseDetails>

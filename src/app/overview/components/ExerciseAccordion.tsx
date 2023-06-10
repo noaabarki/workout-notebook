@@ -3,11 +3,11 @@ import * as interfaces from "../interfaces/exercise";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Subtitle, Title } from "../../shared/components/Title";
 
-import { EmomExercise } from "./exercise-accordion/EmomExercise";
+import { EmomExerciseDetails } from "./exercise-accordion/EmomExerciseDetails";
 import { ExerciseProvider } from "../contexts/exerciseContext";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
-import { TabataExercise } from "./exercise-accordion/TabataExercise";
+import { TabataExerciseDetails } from "./exercise-accordion/TabataExerciseDetails";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -45,10 +45,10 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
 
         <AccordionDetails style={accordionDetailsStyle}>
           {selectedType === "emom" && interfaces.isEmomExercise(exercise) && (
-            <EmomExercise exercise={exercise} onChangeType={handleOnChangeExerciseType} />
+            <EmomExerciseDetails exercise={exercise} onChangeType={handleOnChangeExerciseType} />
           )}
           {selectedType === "tabata" && interfaces.isTabataExercise(exercise) && (
-            <TabataExercise exercise={exercise} onChangeType={handleOnChangeExerciseType} />
+            <TabataExerciseDetails exercise={exercise} onChangeType={handleOnChangeExerciseType} />
           )}
         </AccordionDetails>
       </Accordion>
