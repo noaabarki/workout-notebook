@@ -1,5 +1,4 @@
 import * as core from "../../../../core/interfaces";
-import * as interfaces from "../../interfaces/exercise";
 
 import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
 
@@ -7,12 +6,12 @@ import { ExerciseActivitiesRadio } from "./ExerciseActivitiesRadio";
 import ExerciseDetails from "./ExerciseDetails";
 import { NumberInput } from "../../../shared/components/Input";
 
-interface EmomExerciseProps {
+interface EmomExerciseDetailsProps {
   exercise: core.EmomExercise;
-  onChangeType: (type: interfaces.ExerciseActivityType) => void;
+  onChangeOptions: (type: core.EmomActivityOptions) => void;
 }
 
-export const EmomExerciseDetails = (props: EmomExerciseProps) => {
+export const EmomExerciseDetails = (props: EmomExerciseDetailsProps) => {
   return (
     <>
       <ExerciseDetails>
@@ -21,7 +20,10 @@ export const EmomExerciseDetails = (props: EmomExerciseProps) => {
           <ExerciseActivitiesRadio selected="emom" onChange={() => {}} />
           <div className="row">
             <ExerciseDetails.Caption title="Time" />
-            <NumberInput value={props.exercise.activityOptions.time} onChange={(e) => {}} />
+            <NumberInput
+              value={props.exercise.activityOptions.time}
+              onChange={(e) => props.onChangeOptions({ ...props.exercise.activityOptions, time: e.target.value })}
+            />
           </div>
         </ExerciseDetails.Body>
       </ExerciseDetails>

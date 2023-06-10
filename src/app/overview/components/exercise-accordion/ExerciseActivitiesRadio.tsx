@@ -1,6 +1,6 @@
 import * as interfaces from "../../interfaces/exercise";
 
-import { SectionTitle } from "./ExerciseSection";
+import ExerciseDetails from "./ExerciseDetails";
 import styled from "styled-components";
 
 const EXERCISE_ACTIVITY_TYPES: interfaces.ExerciseActivityType[] = ["emom", "tabata"];
@@ -17,7 +17,7 @@ export const ExerciseActivitiesRadio = (props: ActivityTypeProps) => {
 
   return (
     <div className="row">
-      <SectionTitle>Type</SectionTitle>
+      <ExerciseDetails.Caption title="Type" />
       {EXERCISE_ACTIVITY_TYPES.map((type, i) => {
         return (
           <ActivityRadio key={i}>

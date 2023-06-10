@@ -1,15 +1,11 @@
 import * as core from "../../../../core/interfaces";
-import * as interfaces from "../../interfaces/exercise";
 
 import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
 
-import { Box } from "@mui/material";
-import { ExerciseActivitiesRadio } from "./ExerciseActivitiesRadio";
 import ExerciseDetails from "./ExerciseDetails";
 
 interface TabataExerciseProps {
   exercise: core.TabataExercise;
-  onChangeType: (type: interfaces.ExerciseActivityType) => void;
 }
 
 export const TabataExerciseDetails = (props: TabataExerciseProps) => {
@@ -17,9 +13,6 @@ export const TabataExerciseDetails = (props: TabataExerciseProps) => {
     <>
       <ExerciseDetails>
         <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
-        <Box className="col">
-          <ExerciseActivitiesRadio selected="tabata" onChange={() => {}} />
-        </Box>
       </ExerciseDetails>
       <ExerciseDetails>
         <ExerciseDetails.Header title="Rounds" description="Describe the rounds of your exercise" />
