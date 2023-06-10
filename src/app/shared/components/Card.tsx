@@ -41,8 +41,6 @@ export const CardBody = styled.div`
 export const CardFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
-  /* gap: var(--spacing-3); */
 `;
 
 export const CardFooterItem = styled.div`
