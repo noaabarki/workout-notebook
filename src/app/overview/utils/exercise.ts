@@ -1,7 +1,36 @@
-import { EmomExercise, TabataExercise } from "../../../core/interfaces";
-import { Exercise, isEmomExercise, isTabataExercise } from "../interfaces/exercise";
+import { EmomExercise, EmomRound, TabataExercise, TabataRound } from "../../../core/interfaces";
 
-export function newTabataExercise(): TabataExercise {
+import { Exercise } from "./../interfaces/exercise";
+import { ExerciseActivityType } from "../interfaces/exercise";
+
+export function newExercise(type: ExerciseActivityType): Exercise {
+  switch (type) {
+    case "tabata":
+      return newTabataExercise();
+
+    case "emom":
+      return newEmomExercise();
+  }
+}
+
+export function newEmomRound(): EmomRound {
+  return {
+    weight: 0,
+    name: "",
+    time: 0,
+    reps: 0,
+  };
+}
+
+export function newTabataRound(): TabataRound {
+  return {
+    name: "",
+    weight: 0,
+    reps: 0,
+  };
+}
+
+function newTabataExercise(): TabataExercise {
   return {
     name: "",
     activityOptions: {
@@ -12,7 +41,7 @@ export function newTabataExercise(): TabataExercise {
   };
 }
 
-export function newEmomExercise(): EmomExercise {
+function newEmomExercise(): EmomExercise {
   return {
     name: "",
     activityOptions: {
@@ -21,33 +50,4 @@ export function newEmomExercise(): EmomExercise {
     activityType: "emom",
     rounds: [],
   };
-}
-
-export function addRound(exercise: Exercise): Exercise {
-  if (isEmomExercise(exercise)) {
-    const rounds = [
-      ...exercise.rounds,
-      {
-        weight: 0,
-        name: "",
-        time: 0,
-        reps: 0,
-      },
-    ];
-    return { ...exercise, rounds };
-  }
-
-  if (isTabataExercise(exercise)) {
-    const rounds = [
-      ...exercise.rounds,
-      {
-        name: "",
-        weight: 0,
-        reps: 0,
-      },
-    ];
-    return { ...exercise, rounds };
-  }
-
-  return exercise;
 }

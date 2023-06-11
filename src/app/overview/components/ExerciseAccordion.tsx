@@ -1,16 +1,16 @@
-import * as core from "../../../core/interfaces";
 import * as interfaces from "../interfaces/exercise";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { EmomRound, TabataRound } from "../../../core/interfaces";
 import { Subtitle, Title } from "../../shared/components/Title";
-import { addRound, newEmomExercise, newTabataExercise } from "../utils/exercise";
+import { newEmomRound, newExercise, newTabataRound } from "../utils/exercise";
 
-import { EmomExerciseDetails } from "./exercise-accordion/EmomExerciseDetails";
-import { ExerciseActivitiesRadio } from "./exercise-accordion/ExerciseActivitiesRadio";
+import { EmomExerciseDetails } from "./exercise-details/EmomExerciseDetails";
+import { ExerciseActivitiesRadio } from "./exercise-details/ExerciseActivitiesRadio";
 import { ExerciseProvider } from "../contexts/exerciseContext";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
-import { TabataExerciseDetails } from "./exercise-accordion/TabataExerciseDetails";
+import { TabataExerciseDetails } from "./exercise-details/TabataExerciseDetails";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -22,36 +22,49 @@ interface ExerciseAccordionProps {
 
 export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
   const [expanded, setExpanded] = useState<boolean>(props.expanded);
-  const [exercise, setExercise] = useState(props.exercise);
+  const [exercise, setExercise] = useState<interfaces.Exercise>(props.exercise);
 
   const handleOnChangeExerciseType = (type: interfaces.ExerciseActivityType) => {
     if (exercise.activityType !== type) {
-      switch (type) {
-        case "tabata":
-          setExercise(newTabataExercise());
-          return;
-        case "emom":
-          setExercise(newEmomExercise());
-          return;
-      }
+      setExercise({ ...newExercise(type), name: exercise.name });
     }
   };
 
-  const handleOnChangeEmomExerciseOptions = (opts: core.EmomActivityOptions) => {
+  const handleOnChangeExerciseOptions = (opts: interfaces.ExerciseActivityOptions) => {
+    if (interfaces.isEmomExercise(exercise) && interfaces.isEmomActivityOptions(opts)) {
+      setExercise({ ...exercise, activityOptions: opts });
+    }
+    if (interfaces.isTabataExercise(exercise) && interfaces.isTabataActivityOptions(opts)) {
+      setExercise({ ...exercise, activityOptions: opts });
+    }
+  };
+
+  const handleOnAddRound = () => {
     if (interfaces.isEmomExercise(exercise)) {
-      setExercise({ ...exercise, activityOptions: opts });
+      setExercise({ ...exercise, rounds: [...exercise.rounds, newEmomRound()] });
+    } else if (interfaces.isTabataExercise(exercise)) {
+      setExercise({ ...exercise, rounds: [...exercise.rounds, newTabataRound()] });
     }
   };
 
-  const handleOnChangeTabataExerciseOptions = (opts: core.TabataActivityOptions) => {
+  const handleOnDeleteRound = (round: interfaces.ExerciseRound) => {
+    if (interfaces.isEmomExercise(exercise)) {
+      setExercise({ ...exercise, rounds: exercise.rounds.filter((r) => r !== round) });
+    } else if (interfaces.isTabataExercise(exercise)) {
+      setExercise({ ...exercise, rounds: exercise.rounds.filter((r) => r !== round) });
+    }
+  };
+
+  const handleOnChangeRound = (round: interfaces.ExerciseRound, index: number) => {
     if (interfaces.isTabataExercise(exercise)) {
-      setExercise({ ...exercise, activityOptions: opts });
+      setExercise({ ...exercise, rounds: exercise.rounds.map((r, i) => (i === index ? (round as TabataRound) : r)) });
+      return;
     }
-  };
 
-  const handleAddRound = () => {
-    const newExercise = addRound(exercise);
-    setExercise(newExercise);
+    if (interfaces.isEmomExercise(exercise)) {
+      setExercise({ ...exercise, rounds: exercise.rounds.map((r, i) => (i === index ? (round as EmomRound) : r)) });
+      return;
+    }
   };
 
   return (
@@ -67,18 +80,22 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
         </AccordionSummary>
         <AccordionDetails style={accordionDetailsStyle}>
           <ExerciseActivitiesRadio selected={exercise.activityType} onChange={handleOnChangeExerciseType} />
-          {exercise.activityType === "emom" && interfaces.isEmomExercise(exercise) && (
+          {interfaces.isEmomExercise(exercise) && (
             <EmomExerciseDetails
               exercise={exercise}
-              onChangeOptions={handleOnChangeEmomExerciseOptions}
-              onAddRound={handleAddRound}
+              onChangeOptions={(opts) => handleOnChangeExerciseOptions(opts)}
+              onAddRound={handleOnAddRound}
+              onDeleteRound={handleOnDeleteRound}
+              onChangeRound={handleOnChangeRound}
             />
           )}
-          {exercise.activityType === "tabata" && interfaces.isTabataExercise(exercise) && (
+          {interfaces.isTabataExercise(exercise) && (
             <TabataExerciseDetails
               exercise={exercise}
-              onChangeOptions={handleOnChangeTabataExerciseOptions}
-              onAddRound={handleAddRound}
+              onChangeOptions={(opts) => handleOnChangeExerciseOptions(opts)}
+              onAddRound={handleOnAddRound}
+              onDeleteRound={handleOnDeleteRound}
+              onChangeRound={handleOnChangeRound}
             />
           )}
         </AccordionDetails>

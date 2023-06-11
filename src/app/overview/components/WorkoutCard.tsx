@@ -1,7 +1,7 @@
 import { CardBody, CardFooter, CardFooterItem, CardHeader, CardLayout } from "../../shared/components/Card";
 
 import { Badge } from "../../shared/components/Badge";
-import { Workout } from "../interfaces/workout";
+import { Workout } from "../entities/workout";
 import styled from "styled-components";
 
 interface CardProps {

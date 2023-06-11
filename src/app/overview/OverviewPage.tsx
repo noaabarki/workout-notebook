@@ -1,7 +1,7 @@
 import { ActivityApi } from "../../core/api/workouts/client";
 import React from "react";
 import { Title } from "../shared/components/Title";
-import { Workout } from "./interfaces/workout";
+import { Workout } from "./entities/workout";
 import { WorkoutCard } from "./components/WorkoutCard";
 import { WorkoutDetailsModal } from "./components/WorkoutDetailsModal";
 import styled from "styled-components";

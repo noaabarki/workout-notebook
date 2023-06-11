@@ -1,14 +1,18 @@
 import * as core from "../../../../core/interfaces";
 
-import { AddRoundButton, RoundBox, RoundField } from "./ExerciseRoundBox";
+import { AddRoundButton, RoundBox } from "../exercise-round/ExerciseRoundBox";
 
 import ExerciseDetails from "./ExerciseDetails";
+import { ExerciseRound } from "../../interfaces/exercise";
+import { ExerciseRoundField } from "../exercise-round/ExerciseRoundField";
 import { NumberInput } from "../../../shared/components/Input";
 
 interface TabataExerciseProps {
   exercise: core.TabataExercise;
   onChangeOptions: (type: core.TabataActivityOptions) => void;
   onAddRound: () => void;
+  onDeleteRound: (round: ExerciseRound) => void;
+  onChangeRound: (round: core.TabataRound, index: number) => void;
 }
 
 export const TabataExerciseDetails = (props: TabataExerciseProps) => {
@@ -30,7 +34,7 @@ export const TabataExerciseDetails = (props: TabataExerciseProps) => {
           <AddRoundButton onClick={props.onAddRound} />
           {props.exercise.rounds.map((round, i) => (
             <RoundBox className="row" key={i}>
-              <TabataRound round={round} onChange={(round) => {}} />
+              <TabataRound round={round} onChange={(round) => props.onChangeRound(round, i)} />
             </RoundBox>
           ))}
         </ExerciseDetails.Body>
@@ -43,13 +47,17 @@ const TabataRound = (props: { round: core.TabataRound; onChange: (round: core.Ta
   const { round, onChange } = props;
   return (
     <>
-      <RoundField caption="name" value={round.name} onChange={(value: string) => onChange({ ...round, name: value })} />
-      <RoundField
+      <ExerciseRoundField
+        caption="name"
+        value={round.name}
+        onChange={(value: string) => onChange({ ...round, name: value })}
+      />
+      <ExerciseRoundField
         caption="weight"
         value={round.weight}
         onChange={(value: number) => onChange({ ...round, weight: value })}
       />
-      <RoundField
+      <ExerciseRoundField
         caption="reps"
         value={round.reps || 0}
         onChange={(value: number) => onChange({ ...round, reps: value })}

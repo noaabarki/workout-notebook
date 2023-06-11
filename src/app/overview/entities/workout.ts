@@ -1,4 +1,4 @@
-import { Exercise } from "./exercise";
+import { Exercise } from "../interfaces/exercise";
 
 export class Workout {
   name: string;
