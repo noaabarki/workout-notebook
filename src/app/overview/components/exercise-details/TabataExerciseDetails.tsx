@@ -19,13 +19,14 @@ export const TabataExerciseDetails = (props: TabataExerciseProps) => {
   return (
     <>
       <ExerciseDetails>
-        <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
         <ExerciseDetails.Body>
-          <ExerciseDetails.Caption title="Time" />
-          <NumberInput
-            value={props.exercise.activityOptions.count}
-            onChange={(e) => props.onChangeOptions({ ...props.exercise.activityOptions, count: e.target.value })}
-          />
+          <div className="row">
+            <ExerciseDetails.Caption title="Sets" />
+            <NumberInput
+              value={props.exercise.activityOptions.count}
+              onChange={(e) => props.onChangeOptions({ ...props.exercise.activityOptions, count: e.target.value })}
+            />
+          </div>
         </ExerciseDetails.Body>
       </ExerciseDetails>
       <ExerciseDetails>
@@ -50,17 +51,17 @@ const TabataRound = (props: { round: core.TabataRound; onChange: (round: core.Ta
       <ExerciseRoundField
         caption="name"
         value={round.name}
-        onChange={(value: string) => onChange({ ...round, name: value })}
+        onChange={(value) => onChange({ ...round, name: value.toString() })}
       />
       <ExerciseRoundField
         caption="weight"
         value={round.weight}
-        onChange={(value: number) => onChange({ ...round, weight: value })}
+        onChange={(value) => onChange({ ...round, weight: Number(value) })}
       />
       <ExerciseRoundField
         caption="reps"
         value={round.reps || 0}
-        onChange={(value: number) => onChange({ ...round, reps: value })}
+        onChange={(value) => onChange({ ...round, reps: Number(value) })}
       />
     </>
   );

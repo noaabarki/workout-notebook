@@ -1,12 +1,14 @@
 import * as interfaces from "../interfaces/exercise";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { CancelButton, SaveButton } from "../../shared/components/Button";
 import { EmomRound, TabataRound } from "../../../core/interfaces";
 import { Subtitle, Title } from "../../shared/components/Title";
 import { newEmomRound, newExercise, newTabataRound } from "../utils/exercise";
 
 import { EmomExerciseDetails } from "./exercise-details/EmomExerciseDetails";
 import { ExerciseActivitiesRadio } from "./exercise-details/ExerciseActivitiesRadio";
+import ExerciseDetails from "./exercise-details/ExerciseDetails";
 import { ExerciseProvider } from "../contexts/exerciseContext";
 import { FiHeart } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
@@ -21,6 +23,7 @@ interface ExerciseAccordionProps {
 }
 
 export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
+  const [changed] = useState<boolean>(false);
   const [expanded, setExpanded] = useState<boolean>(props.expanded);
   const [exercise, setExercise] = useState<interfaces.Exercise>(props.exercise);
 
@@ -58,14 +61,12 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
   const handleOnChangeRound = (round: interfaces.ExerciseRound, index: number) => {
     if (interfaces.isTabataExercise(exercise)) {
       setExercise({ ...exercise, rounds: exercise.rounds.map((r, i) => (i === index ? (round as TabataRound) : r)) });
-      return;
-    }
-
-    if (interfaces.isEmomExercise(exercise)) {
+    } else if (interfaces.isEmomExercise(exercise)) {
       setExercise({ ...exercise, rounds: exercise.rounds.map((r, i) => (i === index ? (round as EmomRound) : r)) });
-      return;
     }
   };
+
+  // console.log("render");
 
   return (
     <ExerciseProvider exercise={exercise}>
@@ -79,7 +80,13 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
           <ExerciseAccordionHeader exercise={exercise} />
         </AccordionSummary>
         <AccordionDetails style={accordionDetailsStyle}>
-          <ExerciseActivitiesRadio selected={exercise.activityType} onChange={handleOnChangeExerciseType} />
+          <ExerciseDetails>
+            <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
+            <ExerciseDetails.Body>
+              <ExerciseActivitiesRadio selected={exercise.activityType} onChange={handleOnChangeExerciseType} />
+            </ExerciseDetails.Body>
+          </ExerciseDetails>
+
           {interfaces.isEmomExercise(exercise) && (
             <EmomExerciseDetails
               exercise={exercise}
@@ -97,6 +104,12 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
               onDeleteRound={handleOnDeleteRound}
               onChangeRound={handleOnChangeRound}
             />
+          )}
+          {changed && (
+            <SaveOrDicardActivityChanges className="row">
+              <CancelButton onClick={() => {}} />
+              <SaveButton onClick={() => {}} />
+            </SaveOrDicardActivityChanges>
           )}
         </AccordionDetails>
       </Accordion>
@@ -150,4 +163,8 @@ const ExerciseDescription = styled(Subtitle)`
 const ExerciseIcon = styled(FiHeart)`
   grid-area: icon;
   fill: var(--color-gray-2);
+`;
+
+const SaveOrDicardActivityChanges = styled.div`
+  margin-left: auto;
 `;

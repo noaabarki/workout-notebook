@@ -22,10 +22,9 @@ export const EmomExerciseDetails = (props: EmomExerciseDetailsProps) => {
   return (
     <>
       <ExerciseDetails>
-        <ExerciseDetails.Header title="Activity" description="Choose the Kind of the exercise" />
         <ExerciseDetails.Body>
           <div className="row">
-            <ExerciseDetails.Caption title="Time" />
+            <ExerciseDetails.Caption title="Minutes" />
             <NumberInput
               value={props.exercise.activityOptions.time}
               onChange={(e) => props.onChangeOptions({ ...props.exercise.activityOptions, time: e.target.value })}
