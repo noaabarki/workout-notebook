@@ -23,6 +23,8 @@ export const OverviewPage = () => {
       ) : (
         <OverviewCardsSection>
           {activities.map((activity, i) => {
+            // I don't really like to write js scripts inside the jsx
+            // I would extract this to dictionary and use it: activityCard[activity.type];
             if (activity.type === "workout") {
               return (
                 <WorkoutCard

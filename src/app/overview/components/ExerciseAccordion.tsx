@@ -90,7 +90,7 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
           {interfaces.isEmomExercise(exercise) && (
             <EmomExerciseDetails
               exercise={exercise}
-              onChangeOptions={(opts) => handleOnChangeExerciseOptions(opts)}
+              onChangeOptions={handleOnChangeExerciseOptions}
               onAddRound={handleOnAddRound}
               onDeleteRound={handleOnDeleteRound}
               onChangeRound={handleOnChangeRound}
@@ -99,7 +99,7 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
           {interfaces.isTabataExercise(exercise) && (
             <TabataExerciseDetails
               exercise={exercise}
-              onChangeOptions={(opts) => handleOnChangeExerciseOptions(opts)}
+              onChangeOptions={handleOnChangeExerciseOptions}
               onAddRound={handleOnAddRound}
               onDeleteRound={handleOnDeleteRound}
               onChangeRound={handleOnChangeRound}
