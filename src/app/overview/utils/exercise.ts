@@ -10,6 +10,8 @@ export function newExercise(type: ExerciseActivityType): Exercise {
 
     case "emom":
       return newEmomExercise();
+    default:
+      throw new Error(`Invalid exercise type: ${type}`);
   }
 }
 
