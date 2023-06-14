@@ -1,9 +1,8 @@
-import styled from "styled-components";
-import { MdOutlineDashboard } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
 import { GiStrong } from "react-icons/gi";
-
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdOutlineDashboard } from "react-icons/md";
 import { Title } from "../Title";
+import styled from "styled-components";
 
 export const Sidebar = () => {
   return (
@@ -49,7 +48,7 @@ const SidebarHeader = styled.div`
 
 const SidebarItem = styled.a`
   padding: var(--spacing-3) 0;
-  background-color: var(--color-blue-2);
+  background-color: var(--color-primary-1);
 
   text-decoration: none;
   color: var(--color-white-1);
@@ -65,7 +64,7 @@ const SidebarItem = styled.a`
   padding-right: var(--spacing-6);
 
   &:hover {
-    background-color: var(--color-blue-3);
+    background-color: var(--color-primary-2);
   }
 
   &.selected {

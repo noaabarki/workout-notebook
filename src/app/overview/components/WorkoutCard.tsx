@@ -51,7 +51,7 @@ const Divider = styled.hr`
 
 const WorkoutBadge = styled(Badge)`
   &.badge-emom {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-purple-2);
     color: var(--color-white-1);
   }
 

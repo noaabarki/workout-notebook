@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { Sidebar } from "./app/shared/components/layout/Sidebar";
 import "./variables.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { OverviewPage } from "./app/overview/OverviewPage";
+import React from "react";
+import { Sidebar } from "./app/shared/components/layout/Sidebar";
+import styled from "styled-components";
 
 function App() {
   return (

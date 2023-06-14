@@ -7,15 +7,17 @@ body {
   font-weight: 300;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font-family: var(--font-family);
   font-size: var(--font-size-1);
   font-weight: 300;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .app {
@@ -23,13 +25,6 @@ code {
   background: var(--color-gray-1);
   overflow: auto;
   font-size: var(--font-size-1);
-
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .row {
@@ -37,11 +32,22 @@ code {
   flex-direction: row;
   gap: var(--spacing-1);
   align-items: center;
-}
 
+  &.centered {
+    justify-content: center;
+  }
+
+  &.space-between {
+    justify-content: space-between;
+  }
+}
 
 .col {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1)
+  gap: var(--spacing-1);
+}
+
+footer {
+  margin: var(--spacing-1);
 }

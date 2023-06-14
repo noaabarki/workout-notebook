@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { ActivityApi, getActivities } from "../../../core/api/workouts/client";
+import { useEffect, useState } from "react";
 
 export function useActivities() {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,6 +1,7 @@
 import { Exercise } from "../interfaces/exercise";
 import { ExerciseAccordion } from "./ExerciseAccordion";
 import { Modal } from "../../shared/components/Modal";
+import { SaveButton } from "../../shared/components/Button";
 import { Workout } from "../entities/workout";
 import styled from "styled-components";
 
@@ -31,6 +32,9 @@ export const WorkoutDetailsModal = (props: WorkoutDetailsModalProps) => {
             onChange={(exercise) => handleOnChangeExercise(exercise, i)}
           />
         ))}
+        <footer className="row centered">
+          <SaveButton onClick={onClose} />
+        </footer>
       </ModalWrapper>
     </Modal>
   );

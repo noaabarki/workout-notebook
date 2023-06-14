@@ -1,23 +1,45 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  padding: var(--spacing-1) var(--spacing-2);
-  background-color: var(--color-primary);
+export const Button = styled.button<{ title?: string }>`
+  padding: var(--spacing-1) var(--spacing-6);
+  background-color: var(--color-blue-3);
   color: var(--color-white-1);
-  border-radius: 5px;
-  border: solid 1px var(--color-primary);
-  width: fit-content;
+  border-radius: 3px;
+  border: solid 1px var(--color-blue-3);
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-blue-1);
-    border: solid 1px var(--color-blue-1);
+    background-color: var(--color-blue-2);
+    border: solid 1px var(--color-blue-2);
   }
 `;
 
 export const TextButton = styled(Button)`
+  padding: var(--color-blue-3);
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-blue-3);
+  border: none;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--color-blue-2);
+    border: none;
+  }
+`;
+
+export const SaveButton = styled(Button)`
+  &::after {
+    content: "${(props) => props.title || "Save"}";
+  }
+`;
+
+export const CancelButton = styled(Button)`
+  background-color: transparent;
+  border: solid 1px var(--color-blue-3);
+  color: var(--color-blue-3);
+  ::after {
+    content: "Cancel";
+  }
 
   &:hover {
     background-color: transparent;
@@ -26,22 +48,6 @@ export const TextButton = styled(Button)`
   }
 `;
 
-export const SaveButton = styled(Button)`
-  ::after {
-    content: "Save";
-  }
-`;
-
-export const CancelButton = styled(Button)`
-  background-color: transparent;
-  border: solid 1px var(--color-primary);
-  color: var(--color-primary);
-  ::after {
-    content: "Cancel";
-  }
-
-  &:hover {
-    border: solid 1px var(--color-blue-1);
-    color: var(--color-blue-1);
-  }
+export const IconButton = styled(Button)`
+  padding: var(--spacing-1);
 `;

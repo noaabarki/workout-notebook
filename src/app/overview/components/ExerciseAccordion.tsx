@@ -23,7 +23,6 @@ interface ExerciseAccordionProps {
 }
 
 export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
-  const [changed] = useState<boolean>(false);
   const [expanded, setExpanded] = useState<boolean>(props.expanded);
   const [exercise, setExercise] = useState<interfaces.Exercise>(props.exercise);
 
@@ -66,8 +65,6 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
     }
   };
 
-  // console.log("render");
-
   return (
     <ExerciseProvider exercise={exercise}>
       <Accordion expanded={expanded}>
@@ -105,12 +102,10 @@ export const ExerciseAccordion = (props: ExerciseAccordionProps) => {
               onChangeRound={handleOnChangeRound}
             />
           )}
-          {changed && (
-            <SaveOrDicardActivityChanges className="row">
-              <CancelButton onClick={() => {}} />
-              <SaveButton onClick={() => {}} />
-            </SaveOrDicardActivityChanges>
-          )}
+          <footer className="row centered">
+            <CancelButton onClick={() => setExercise(props.exercise)} />
+            <SaveButton onClick={() => props.onChange(exercise)} title="Apply to workout" />
+          </footer>
         </AccordionDetails>
       </Accordion>
     </ExerciseProvider>
@@ -132,7 +127,7 @@ const ExerciseAccordionHeader = (props: { exercise: interfaces.Exercise }) => {
   const { exercise } = props;
   return (
     <ExerciseAccordionHeaderLayout>
-      <div className="centered">
+      <div className="row centered">
         <ExerciseIcon />
       </div>
       <ExerciseName>{exercise.name}</ExerciseName>
@@ -163,8 +158,4 @@ const ExerciseDescription = styled(Subtitle)`
 const ExerciseIcon = styled(FiHeart)`
   grid-area: icon;
   fill: var(--color-gray-2);
-`;
-
-const SaveOrDicardActivityChanges = styled.div`
-  margin-left: auto;
 `;

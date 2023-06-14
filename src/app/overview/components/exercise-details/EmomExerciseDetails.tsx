@@ -3,10 +3,10 @@ import * as core from "../../../../core/interfaces";
 import { AddRoundButton, RoundBox } from "../exercise-round/ExerciseRoundBox";
 
 import { BsTrash } from "react-icons/bs";
-import { Button } from "../../../shared/components/Button";
 import ExerciseDetails from "./ExerciseDetails";
 import { ExerciseRound } from "../../interfaces/exercise";
 import { ExerciseRoundField } from "../exercise-round/ExerciseRoundField";
+import { IconButton } from "../../../shared/components/Button";
 import { NumberInput } from "../../../shared/components/Input";
 import styled from "styled-components";
 
@@ -88,7 +88,7 @@ const EmomRound = (props: EmomRoundProps) => {
   );
 };
 
-const DeleteRoundButton = styled(Button)`
+const DeleteRoundButton = styled(IconButton)`
   margin: auto 0 0 auto;
   display: flex;
 `;
